@@ -1,0 +1,29 @@
+import{jsx as _jsx}from"react/jsx-runtime";import*as React from"react";import{addPropertyControls,ControlType}from"framer";/* 1) Intersection Observer Hook 
+   Only starts effects once the component is at least 10% visible
+*/function useInView(ref,options={}){const[inView,setInView]=React.useState(false);React.useEffect(()=>{const observer=new IntersectionObserver(entries=>{if(entries[0].isIntersecting){setInView(true);}},{threshold:.1,...options});if(ref.current)observer.observe(ref.current);return()=>{if(ref.current)observer.unobserve(ref.current);};},[ref,options]);return inView;}/* 2) Simple Flicker Hook 
+   If flicker is on, randomize opacity ~10 times/sec.
+*/function useFlicker(enabled){const[opacity,setOpacity]=React.useState(1);React.useEffect(()=>{if(!enabled)return;const interval=setInterval(()=>{setOpacity(Math.random()*.3+.7)// flicker between 0.7..1.0
+;},100);return()=>clearInterval(interval);},[enabled]);return enabled?opacity:1;}/* 3) Main Component */export function AnimatedFilteredImage(props){const{image,flicker,transitionSpeed,scale,placeholderFontName,placeholderFontSize}=props;// Intersection Observer
+const containerRef=React.useRef(null);const inView=useInView(containerRef);// Flicker effect (if toggled on)
+const flickerOpacity=useFlicker(flicker&&inView);// We'll also fade in from 0 -> 1 over `transitionSpeed` seconds
+// once it is in view
+const[visible,setVisible]=React.useState(false);React.useEffect(()=>{if(inView){setVisible(true);}},[inView]);// Build a dynamic style object
+const imageStyle={...styles.image,opacity:visible?flickerOpacity:0,transition:`opacity ${transitionSpeed}s ease-in-out`,transform:`scale(${scale})`};const placeholderStyle={...styles.placeholder,fontFamily:placeholderFontName,fontSize:`${placeholderFontSize}px`};return /*#__PURE__*/_jsx("div",{ref:containerRef,style:styles.container,children:image?/*#__PURE__*/_jsx("img",{src:image,alt:"Filtered",style:imageStyle}):/*#__PURE__*/_jsx("div",{style:placeholderStyle,children:"No image selected"})});}/* 4) Styles 
+   - The "filter" property includes a greenish tint:
+       * grayscale(50%) converts a portion to grayscale
+       * sepia(1) adds warm tone
+       * hue-rotate(90deg) rotates to green
+       * saturate(2) boosts color
+       * brightness(1.2) slightly brightens
+       * contrast(1.2) increases contrast
+   You can tweak or replace this with a custom filter or color matrix.
+*/const styles={container:{width:"100%",height:"100%",display:"flex",alignItems:"center",justifyContent:"center",background:"#000",boxSizing:"border-box",overflow:"hidden"},image:{maxWidth:"100%",maxHeight:"100%",objectFit:"contain",filter:`
+            grayscale(50%)
+            sepia(1)
+            hue-rotate(90deg)
+            saturate(2)
+            brightness(1.2)
+            contrast(1.2)
+        `},placeholder:{color:"#aaa",fontFamily:"sans-serif"}};/* 5) Property Controls */addPropertyControls(AnimatedFilteredImage,{image:{type:ControlType.Image,title:"Image",defaultValue:""},flicker:{type:ControlType.Boolean,title:"Flicker?",defaultValue:false},transitionSpeed:{type:ControlType.Number,title:"Fade Speed (s)",defaultValue:1,min:0,max:5,step:.1,displayStepper:true},scale:{type:ControlType.Number,title:"Scale",defaultValue:1,min:.5,max:2,step:.1,displayStepper:true,unit:"",displayFormatter:value=>`${(value*100).toFixed(0)}%`},placeholderFontName:{type:ControlType.Enum,title:"Placeholder Font",options:["Arial, sans-serif","Courier New, monospace","Lucida Console, monospace","Consolas, monospace","Menlo, monospace","Monaco, monospace","Source Code Pro, monospace","Roboto Mono, monospace","Fira Code, monospace","Inconsolata, monospace"],optionTitles:["Arial","Courier New","Lucida Console","Consolas","Menlo","Monaco","Source Code Pro","Roboto Mono","Fira Code","Inconsolata"],defaultValue:"sans-serif"},placeholderFontSize:{type:ControlType.Number,title:"Placeholder Font Size",defaultValue:14,min:8,max:48,step:1,unit:"px"}});
+export const __FramerMetadata__ = {"exports":{"AnimatedFilteredImage":{"type":"reactComponent","name":"AnimatedFilteredImage","slots":[],"annotations":{"framerContractVersion":"1"}},"__FramerMetadata__":{"type":"variable"}}}
+//# sourceMappingURL=./Image_render.map

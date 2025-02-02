@@ -1,0 +1,2 @@
+function e(t,a){return{description:"Swarm Network unveils a AI-Agent agnostic Swarm Framework and a decentralized Truth Protocol built on zero-knowledge proofs, empowering AI agent x human collectives to validate reality in real time.",favicon:"https://framerusercontent.com/assets/EzHFFFr5AEH8jxWn4kZEFPlfg.png",robots:"max-image-preview:large",socialImage:"https://framerusercontent.com/assets/3NqcMRoDZ1Y0q5uBncqeO9A7Ko.gif",title:"Swarm Network - Multi Agent Collaboration & Decentralized Truth"}}export{e as a};
+//# sourceMappingURL=chunk-CFBX7QZ7.mjs.map

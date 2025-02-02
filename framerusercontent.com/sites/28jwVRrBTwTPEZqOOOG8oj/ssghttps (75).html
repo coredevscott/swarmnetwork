@@ -1,0 +1,17 @@
+import{jsx as _jsx,jsxs as _jsxs}from"react/jsx-runtime";import{addPropertyControls}from"framer";import{useState,useEffect}from"react";export default function AsciiLoader(){const[flicker,setFlicker]=useState(1);const[isLoading,setIsLoading]=useState(true);useEffect(()=>{// Flicker effect
+const flickerInterval=setInterval(()=>{setFlicker(Math.random()*.3+.7);},50);// Hide loader after 3 seconds
+const loadTimer=setTimeout(()=>{setIsLoading(false);},3e3);return()=>{clearInterval(flickerInterval);clearTimeout(loadTimer);};},[]);const asciiDoge=`
+                    ▄▄▄
+               ▄▀▀▀▀▀▀▀▀▀▀▀▄
+             ▄▀            ▀▄
+            █   ▄▄     ▄▄    █
+           ▐   ▄▄▄  ▄  ▄▄▄   ▌
+           ▐     Ω     Ω     ▌
+           ▐      ▀▄▄▄▀      ▌
+            █              █
+             ▀▄    ▄▄    ▄▀
+               ▀▄▄▀  ▀▄▄▀
+    `;const containerStyle={position:"fixed",top:0,left:0,width:"100%",height:"100%",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",backgroundColor:"#000",color:"#00CE7D",fontFamily:"monospace",opacity:isLoading?1:0,visibility:isLoading?"visible":"hidden",transition:"opacity 0.5s ease-out",zIndex:9999};const asciiStyle={fontSize:"16px",whiteSpace:"pre",lineHeight:"1.2",textAlign:"center",opacity:flicker,textShadow:"0 0 5px rgba(0, 206, 125, 0.7)",marginBottom:"20px"};const textStyle={fontSize:"24px",letterSpacing:"0.2em",textAlign:"center",fontWeight:"bold",opacity:flicker,textShadow:"0 0 5px rgba(0, 206, 125, 0.7)"};// Loading bar animation
+const[loadingProgress,setLoadingProgress]=useState(0);useEffect(()=>{if(isLoading){const progressInterval=setInterval(()=>{setLoadingProgress(prev=>{if(prev>=100){clearInterval(progressInterval);return 100;}return prev+2;});},50);return()=>clearInterval(progressInterval);}},[isLoading]);const loadingBarStyle={width:"200px",height:"20px",border:"1px solid #00CE7D",marginTop:"20px",position:"relative",boxShadow:"0 0 5px rgba(0, 206, 125, 0.7)"};const loadingProgressStyle={width:`${loadingProgress}%`,height:"100%",backgroundColor:"#00CE7D",transition:"width 0.1s linear",boxShadow:"0 0 10px rgba(0, 206, 125, 0.7)"};return /*#__PURE__*/_jsxs("div",{style:containerStyle,children:[/*#__PURE__*/_jsx("pre",{style:asciiStyle,children:asciiDoge}),/*#__PURE__*/_jsx("div",{style:textStyle,children:"FOLLOW THE TRUTH"}),/*#__PURE__*/_jsx("div",{style:loadingBarStyle,children:/*#__PURE__*/_jsx("div",{style:loadingProgressStyle})}),/*#__PURE__*/_jsxs("div",{style:{...textStyle,fontSize:"14px",marginTop:"10px"},children:[loadingProgress,"%"]})]});}addPropertyControls(AsciiLoader,{});
+export const __FramerMetadata__ = {"exports":{"default":{"type":"reactComponent","name":"AsciiLoader","slots":[],"annotations":{"framerContractVersion":"1"}},"__FramerMetadata__":{"type":"variable"}}}
+//# sourceMappingURL=./Site_load.map

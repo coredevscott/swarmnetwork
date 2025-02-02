@@ -1,0 +1,2 @@
+import{v as t}from"./chunk-J3542FLR.mjs";function e(){return t("div",{style:{width:"100%",height:"100%",background:"#000",overflow:"hidden",position:"relative"},children:t("iframe",{src:"https://cli.swarmnetwork.ai",style:{width:"100%",height:"100%",border:"none",position:"absolute",top:0,left:0,right:0,bottom:0},allow:"microphone",title:"Swarm Network CLI"})})}export{e as a};
+//# sourceMappingURL=chunk-AO6QLFHA.mjs.map
