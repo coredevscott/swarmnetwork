@@ -88,7 +88,7 @@ var u = {
       page: t(() =>
         import("./F-Avig4oKQilUNHBpC7o8fkSXSH2VrnH3IKfI-bAzg4.F4WWRIX5.mjs")
       ),
-      path: "https://app.uniswap.org/#/swap?inputCurrency=eth&outputCurrency=0x00000000000000000000000000000000000000",
+      path: "https://app.uniswap.org/#/swap?inputCurrency=eth&outputCurrency=0xc2D781c6913bc1Ba738C47ee7D4c223a65c7eA9F",
     },
     F3z5BTKxD: {
       elements: {},
