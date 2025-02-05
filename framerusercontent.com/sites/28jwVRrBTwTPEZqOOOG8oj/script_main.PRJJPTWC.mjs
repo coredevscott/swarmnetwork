@@ -60,7 +60,7 @@ var u = {
       page: t(() =>
         import("./1ChIH5tScxXmfGKnyu4l_KmKbC_fTD0_7WO0AkQeQxs.YP6W5YFB.mjs")
       ),
-      path: "https://www.dextools.io/app/en/ether/pool-explorer/0x11111111111111111111111111111111111111",
+      path: "https://www.dextools.io/app/en/ether/pair-explorer/0x5d5265178d4cb710cd006a77a21812858d643c46?t=1738722126727",
     },
     QXEysvLEK: {
       elements: {},
